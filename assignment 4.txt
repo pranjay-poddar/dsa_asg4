@@ -1,0 +1,178 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+int choice = 1; // input choice
+
+struct node
+{
+    char fname[15];
+    char lname[15];
+    int age;
+    int year;
+    struct node*next;
+} *front = NULL,*rear=NULL,*front2=NULL,*rear2=NULL;
+
+//function declarations----------------------------------------------------------
+void enq();
+void enq2();
+void dq();
+void dq2();
+
+//enqueue function----------------------------------------------------------------
+void enq()
+{
+    struct node* newnode;
+    newnode=(struct node *)(malloc(sizeof(struct node)));
+    printf("Please enter details in the given format-\n(First_name<space>Last_name<space>,age,year_of_birth) Eg-thomas david ,20,2000:\n");
+    scanf("%s %s ,%d,%d",newnode->fname,newnode->lname,&newnode->age,&newnode->year);
+    newnode->next=NULL;
+
+    if(front == NULL && rear == NULL)
+    {
+        front = rear = newnode;
+    }
+    else
+    {
+        rear->next=newnode;
+        rear=newnode;
+    }
+}
+//second enqueue ----------------------------------------------------------------------------------
+void enq2(char fn[],char ln[],int age2,int year2)
+{
+    struct node* newnode;
+    newnode=(struct node *)(malloc(sizeof(struct node)));
+
+    strcpy(newnode->fname,fn);
+    strcpy(newnode->lname,ln);
+    newnode->age=age2;
+    newnode->year=year2;
+    newnode->next=NULL;
+
+    if(front2 == NULL && rear2 == NULL)
+    {
+        front2 = rear2 = newnode;
+    }
+    else
+    {
+        rear2->next=newnode;
+        rear2=newnode;
+    }
+}
+
+//dequeue function----------------------------------------------------------------
+void dq()
+{
+    struct node *temp=front;
+    char ch;
+
+    if(front == NULL && rear == NULL)
+    {
+        printf("Queue is empty!\n");
+        choice = 0;
+    }
+    else if(front == rear)
+    {
+        printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
+
+        enq2(temp->fname,temp->lname,temp->age,temp->year);
+
+        front = rear = NULL;
+    }
+    else
+    {
+        printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
+        enq2(temp->fname,temp->lname,temp->age,temp->year);
+        front=front->next;
+        free(temp);
+    }
+}
+
+//second queue--------------------------------------------------------------
+void dq2()
+{
+    struct node *temp=front2;
+
+    if(front2 == NULL && rear2 == NULL)
+    {
+        printf("Queue is empty!\n");
+    }
+    else if(front2 == rear2)
+    {
+        printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
+        front2 = rear2 = NULL;
+    }
+    else
+    {
+        printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
+        front2=front2->next;
+        free(temp);
+    }
+}
+
+
+//main function----------------------------------------------------------------
+int main()
+{
+    char ch[1];   //choice for yes or no for stack processing
+    // enqueue dequeue requeue ---------------start----------------------------------------
+    
+    printf("Press 1 to enqueue\nPress 2 to dequeue\nPress 0 to exit\n");
+    
+    do
+    {
+        printf("Choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            enq();
+            break;
+            case 2:
+            dq();
+            break;
+            case 0:
+            break;
+            default:
+            printf("Please enter valid Input\n");
+        }
+    } while(choice);
+
+// enqueue dequeue requeue ---------------end----------------------------------------
+printf("Press Y to continue processing or N to exit:");
+scanf("%s",ch);
+
+// Queue to stack push pop and requeue-----------------------start-------------------
+
+printf("Press 1 to dequeue and push element to stack\nPress 2 to reverse order of stack\nPress 0 to exit\n");
+
+if (strcmp(ch,"Y")==0 || strcmp(ch,"y")==0)
+{   
+    do
+    {
+        printf("Choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            enq();
+            break;
+            case 2:
+            dq();
+            break;
+            case 0:
+            break;
+            default:
+            printf("Please enter valid Input\n");
+        }
+    } while(choice);
+}
+else
+{
+    return 0;
+}
+// Queue to stack push pop and requeue-----------------------start-------------------
+
+    return 0;
+}
