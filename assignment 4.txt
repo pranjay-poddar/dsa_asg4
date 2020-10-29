@@ -145,10 +145,12 @@ scanf("%s",ch);
 
 // Queue to stack push pop and requeue-----------------------start-------------------
 
-printf("Press 1 to dequeue and push element to stack\nPress 2 to reverse order of stack\nPress 0 to exit\n");
 
-if (strcmp(ch,"Y")==0 || strcmp(ch,"y")==0)
+
+if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
 {   
+    printf("-------------------------------------------------------------------\n");
+    printf("Press 1 to dequeue and push element to stack\nPress 2 to reverse order of stack\nPress 0 to exit\n");
     do
     {
         printf("Choice:");
@@ -170,6 +172,8 @@ if (strcmp(ch,"Y")==0 || strcmp(ch,"y")==0)
 }
 else
 {
+    printf("-------------------------------------------------------------------\n");
+    printf("Program Exited\n");
     return 0;
 }
 // Queue to stack push pop and requeue-----------------------start-------------------
