@@ -273,7 +273,7 @@ int main()
     } while(choice);
 
 // enqueue dequeue requeue ---------------end----------------------------------------
-printf("Press Y to continue processing or N to exit:");
+printf("Press Y to continue processing or any key to exit:");
 scanf("%s",ch);
 
 // Queue to stack push pop and requeue-----------------------start-------------------
@@ -316,7 +316,7 @@ else
 }
 
         printf("-------------------------------------------------------------------\n");
-        printf("Press Y to continue or N to exit\n");
+        printf("Press Y to continue or any key to exit\n");
         scanf("%s",ch);
         printf("-------------------------------------------------------------------\n");
         
