@@ -49,7 +49,7 @@ void enq(char fn[],char ln[],int ag,int yr)
     newnode->age = ag;
     newnode->year = yr;
     newnode->next=NULL;
-    printf("data Serial No.- %d\n",t+1);
+    printf("Data Serial No.- %d\n",t+1);
 
     printf("%s %s,%d,%d\n",fn,ln,ag,yr);
     t++;
