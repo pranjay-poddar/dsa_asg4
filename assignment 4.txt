@@ -13,8 +13,20 @@ struct node
     struct node*next;
 } *front = NULL,*rear=NULL,*front2=NULL,*rear2=NULL,*top=NULL,*prev;
 
+//FILE HANDLING-------------------------START-----------------------------------------------
+int entryCount;
+typedef struct
+{
+    char *f_name;
+    char *l_name;
+    int age_i;
+    int year_i;
+} Entry;
+
+//FILE HANDLING-------------------------END-------------------------------------------------
+
 //function declarations(prototypes)----------------------------------------------------------
-void enq();
+void enq(char fn[],char ln[],int ag,int yr);
 void enq2(char fn[],char ln[],int age2,int year2);
 void enq3(char fn[],char ln[],int age4,int year4);
 void dq();
@@ -26,14 +38,21 @@ void display_reverse();
 void display_q();
 
 //first enqueue function---------------------------------------------------------
-void enq()
+int t=0;
+void enq(char fn[],char ln[],int ag,int yr)
 {
+
     struct node* newnode;
     newnode=(struct node *)(malloc(sizeof(struct node)));
-    printf("Please enter details in the given format-\n(First_name<space>Last_name<space>,age,year_of_birth) Eg-thomas david ,20,2000:\n");
-    scanf("%s %s ,%d,%d",newnode->fname,newnode->lname,&newnode->age,&newnode->year);
+    strcpy(newnode->fname,fn);
+    strcpy(newnode->lname,ln);
+    newnode->age = ag;
+    newnode->year = yr;
     newnode->next=NULL;
+    printf("data No.- %d\n",t+1);
 
+    printf("%s %s,%d,%d\n",fn,ln,ag,yr);
+    t++;
     if(front == NULL && rear == NULL)
     {
         front = rear = newnode;
@@ -43,6 +62,8 @@ void enq()
         rear->next=newnode;
         rear=newnode;
     }
+
+
 }
 //second enqueue function----------------------------------------------------------------------------------
 void enq2(char fn[],char ln[],int age2,int year2)
@@ -71,8 +92,6 @@ void enq2(char fn[],char ln[],int age2,int year2)
 void dq()
 {
     struct node *temp=front;
-    char ch;
-
     if(front == NULL && rear == NULL)
     {
         printf("Queue is empty!\n");
@@ -109,14 +128,14 @@ void dq2()
         printf("-------------------------------------------------------------------\n");
         printf("Press 2 to reverse order of stack\n");
         printf("-------------------------------------------------------------------\n");
-        
+
     }
     else if(front2 == rear2)
     {
         printf("Dequeued and pushed data to stack: ");
         printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
         push(temp->fname,temp->lname,temp->age,temp->year);    //push data to stack
-        front2 = rear2 = NULL;      
+        front2 = rear2 = NULL;
     }
     else
     {
@@ -140,35 +159,35 @@ void push(char fn[],char ln[],int age3,int year3)
     strcpy(newdata->lname,ln);
     newdata->age=age3;
     newdata->year=year3;
-    
+
     newdata->next=top;
     top=newdata;
-    
-    
+
+
 }
 
 //pop function for stack--------------------------------
 void pop()
 {
-    
+
     struct node *temp=prev;
     if(temp==NULL)
     {
         printf("Stack is empty\n\n");
-    
+
         printf("-------------------------------------------------------------------\n");
         printf("Press 4 to display the final data of Queue\n");
         printf("-------------------------------------------------------------------\n");
     }
     else
     {
-    
+
     printf("The popped element is: %s %s,%d,%d \n",prev->fname,prev->lname,prev->age,prev->year);
     enq3(prev->fname,prev->lname,prev->age,prev->year);
     prev=prev->next;
     free(temp);
     }
-    
+
 }
 
 //reverse function for stack-----------------------------------------------
@@ -225,7 +244,7 @@ void enq3(char fn[],char ln[],int age4,int year4)
         rear->next=newnode;
         rear=newnode;
     }
-    
+
 }
 
 //display final Queue data----------------------------------------------------
@@ -248,20 +267,75 @@ void display_q()
 //main function----------------------------------------------------------------
 int main()
 {
+    //file handling input--------------------start-----------------------------
+
+    FILE *fp = fopen("input.txt","r");
+    Entry *entries = malloc(sizeof(Entry) * entryCount);   //allocate number of inputs
+    fscanf(fp, "%i" , &entryCount);
+
+    for (int i = 0; i < entryCount; i++)
+    {
+
+        entries[i].f_name = malloc(sizeof(char));
+        entries[i].l_name = malloc(sizeof(char));
+        fscanf(fp,"%s %s %i %i",entries[i].f_name, entries[i].l_name,&entries[i].age_i,&entries[i].year_i);
+
+    }
+
+
+
+    //file handling input--------------------end-------------------------------
+
     char ch[1];   //choice for yes or no for stack processing
     // enqueue dequeue requeue ---------------start----------------------------
-    
-    printf("Press 1 to enqueue data\nPress 2 to dequeue data\nPress 0 to exit\n");
-    
+
+    printf("Press 1 to read data from file\nPress 0 to exit\n");
+    printf("-------------------------------------------------------------------\n\n");
+    int r=0;
+    char fn[15],ln[15];
+    int ag,yr;
     do
     {
+
         printf("Choice:");
         scanf("%d",&choice);
         switch(choice)
         {
             case 1:
-            enq();
+                strcpy(fn,entries[r].f_name);
+                strcpy(ln,entries[r].l_name);
+                ag = entries[r].age_i;
+                yr = entries[r].year_i;
+            enq(fn,ln,ag,yr);
+            if (r+1==entryCount)
+                {
+                    printf("\n");
+                    printf("Data inputs Successfull");
+                    printf("\n");
+                   printf("-------------------------------------------------------------------\n");
+                   printf("Press 2 to dequeue data\nPress 0 to exit\n");
+                   printf("-------------------------------------------------------------------\n\n");
+                   choice=0;
+                }
+            r++;
             break;
+            case 0:
+            return 0;
+            default:
+            printf("Please enter valid Input\n");
+        }
+
+    } while(choice);
+//first dequeue-------------------------------------------------------------------------
+do
+    {
+
+        printf("Choice:");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+
+
             case 2:
             dq();
             break;
@@ -270,6 +344,7 @@ int main()
             default:
             printf("Please enter valid Input\n");
         }
+
     } while(choice);
 
 // enqueue dequeue requeue ---------------end----------------------------------------
@@ -281,9 +356,10 @@ scanf("%s",ch);
 
 
 if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
-{   
+{
     printf("-------------------------------------------------------------------\n");
     printf("Press 1 to dequeue and push element to stack one after another\nPress 0 to exit\n");
+    printf("-------------------------------------------------------------------\n\n");
     do
     {
         printf("Choice:");
@@ -319,15 +395,15 @@ else
         printf("Press Y to continue or any key to exit\n");
         scanf("%s",ch);
         printf("-------------------------------------------------------------------\n");
-        
+
 // Queue to stack push pop and requeue-----------------------end-------------------
 
- 
+
 if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
 {
     printf("Continue to code from here!\n");
 }
-else 
+else
 {
     return 0;
 }
