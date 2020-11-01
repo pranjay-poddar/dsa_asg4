@@ -49,9 +49,9 @@ void enq(char fn[],char ln[],int ag,int yr)
     newnode->age = ag;
     newnode->year = yr;
     newnode->next=NULL;
-    printf("Data Serial No.- %d\n",t+1);
+    printf("Data Serial Number:%d\n",t+1);
 
-    printf("%s %s,%d,%d\n",fn,ln,ag,yr);
+    printf("%s %s,%d,%d\n\n",fn,ln,ag,yr);
     t++;
     if(front == NULL && rear == NULL)
     {
@@ -94,13 +94,13 @@ void dq()
     struct node *temp=front;
     if(front == NULL && rear == NULL)
     {
-        printf("Queue is empty!\n");
+        printf("\nQueue is empty!\n\n");
         printf("-------------------------------------------------------------------\n");
         choice = 0;
     }
     else if(front == rear)
     {   printf("Dequeued Data: ");
-        printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
+        printf("%s %s,%d,%d\n\n",temp->fname,temp->lname,temp->age,temp->year);
 
         enq2(temp->fname,temp->lname,temp->age,temp->year);
 
@@ -109,7 +109,7 @@ void dq()
     else
     {
         printf("Dequeued Data: ");
-        printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
+        printf("%s %s,%d,%d\n\n",temp->fname,temp->lname,temp->age,temp->year);
         enq2(temp->fname,temp->lname,temp->age,temp->year);
         front=front->next;
         free(temp);
@@ -123,24 +123,24 @@ void dq2()
 
     if(front2 == NULL && rear2 == NULL)
     {
-        printf("Queue is empty!\n");
+        printf("\nQueue is empty!\n\n");
         printf("All data pushed successfully to stack\n");
-        printf("-------------------------------------------------------------------\n");
+        printf("\n-------------------------------------------------------------------\n");
         printf("Press 2 to reverse order of stack\n");
-        printf("-------------------------------------------------------------------\n");
+        printf("-------------------------------------------------------------------\n\n");
 
     }
     else if(front2 == rear2)
     {
         printf("Dequeued and pushed data to stack: ");
-        printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
+        printf("%s %s,%d,%d\n\n",temp->fname,temp->lname,temp->age,temp->year);
         push(temp->fname,temp->lname,temp->age,temp->year);    //push data to stack
         front2 = rear2 = NULL;
     }
     else
     {
         printf("Dequeued and pushed data to stack: ");
-        printf("%s %s,%d,%d\n",temp->fname,temp->lname,temp->age,temp->year);
+        printf("%s %s,%d,%d\n\n",temp->fname,temp->lname,temp->age,temp->year);
         push(temp->fname,temp->lname,temp->age,temp->year);   //push data to stack
         front2=front2->next;
         free(temp);
@@ -173,7 +173,7 @@ void pop()
     struct node *temp=prev;
     if(temp==NULL)
     {
-        printf("Stack is empty\n\n");
+        printf("\nStack is empty\n\n");
 
         printf("-------------------------------------------------------------------\n");
         printf("Press 4 to display the final data of Queue\n");
@@ -182,7 +182,7 @@ void pop()
     else
     {
 
-    printf("The popped element is: %s %s,%d,%d \n",prev->fname,prev->lname,prev->age,prev->year);
+    printf("The popped element is: %s %s,%d,%d\n\n",prev->fname,prev->lname,prev->age,prev->year);
     enq3(prev->fname,prev->lname,prev->age,prev->year);
     prev=prev->next;
     free(temp);
@@ -210,13 +210,13 @@ void display_reverse()
 {
     struct node*temp;
     temp= prev;
-    printf("reversed data:\n");
+    printf("reversed data:\n\n");
     while(temp!=NULL)
     {
         printf("%s %s,%d,%d \n",temp->fname,temp->lname,temp->age,temp->year);
         temp=temp->next;
     }
-    printf("-------------------------------------------------------------------\n");
+    printf("\n-------------------------------------------------------------------\n");
     printf("Press 3 to pop and requeue data one after another:\n");
     printf("-------------------------------------------------------------------\n");
 }
@@ -252,7 +252,7 @@ void display_q()
 {
     struct node *temp;
     temp=front;
-    printf("Initial Queue is preserved\nFinal Queue data:\n");
+    printf("\nInitial Queue is preserved\n\nFinal Queue data:\n");
     printf("-------------------------------------------------------------------\n");
     while (temp!=rear)
     {
@@ -309,8 +309,8 @@ int main()
             enq(fn,ln,ag,yr);
             if (r+1==entryCount)
                 {
-                    printf("\n");
-                    printf("Data inputs Successfull");
+
+                    printf("Data inputs Successfull\n");
                     printf("\n");
                    printf("-------------------------------------------------------------------\n");
                    printf("Press 2 to dequeue data\nPress 0 to exit\n");
@@ -322,7 +322,7 @@ int main()
             case 0:
             return 0;
             default:
-            printf("Please enter valid Input\n");
+            printf("Please enter valid Input\n\n");
         }
 
     } while(choice);
@@ -358,7 +358,7 @@ scanf("%s",ch);
 if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
 {
     printf("-------------------------------------------------------------------\n");
-    printf("Press 1 to dequeue and push element to stack one after another\nPress 0 to exit\n");
+    printf("Press 1 to dequeue and push element to stack\nPress 0 to exit\n");
     printf("-------------------------------------------------------------------\n\n");
     do
     {
@@ -380,7 +380,7 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
             case 0:
             break;
             default:
-            printf("Please enter valid Input\n");
+            printf("Please enter valid Input\n\n");
         }
     } while(choice);
 }
