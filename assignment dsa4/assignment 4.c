@@ -252,8 +252,8 @@ void display_q()
 {
     struct node *temp;
     temp=front;
-    printf("\nInitial Queue is preserved\n\nFinal Queue data:\n");
-    printf("-------------------------------------------------------------------\n");
+    printf("\nInitial Queue is preserved\n\nFinal Queue data:\n\n");
+
     while (temp!=rear)
     {
         printf("%s %s,%d,%d \n",temp->fname,temp->lname,temp->age,temp->year);
@@ -338,7 +338,7 @@ void insertNode(int age, int year, char fName[], char lName[]){
     }
 }
 
-//moving Contents in a linked list-----------------------
+//moving Contents in a linked list-----------------------------------------------------------
 struct linkedList{
     int age;
     int year;
@@ -347,7 +347,7 @@ struct linkedList{
     struct linkedList *next;
 } *head = NULL, *pre, *p;
 
-//creating linkedlist---------
+//creating linked-list--------------------------------------------------------------------------
 void linkTransfer(struct node1 *root){
     p = malloc(sizeof(struct linkedList));
     p->age = root->age;
@@ -375,9 +375,9 @@ void inOrder(struct node1* root){
     }
 }
 
-//printng linkedlist----
+//printing linked-list----------------------------------------------------------------
 void linklist(){
-    printf("Printing Contents of linked list\n");
+    printf("Printing Contents of linked list\n\n");
     struct linkedList *temp = head;
     while(temp != NULL){
         printf("%s %s %d %d\n", temp->firstNm, temp->lastNm, temp->age, temp->year);
@@ -385,7 +385,7 @@ void linklist(){
     }
 }
 
-//postOrder-----------------------
+//post-Order----------------------------------------------------------------------------
 void postOrder(struct node1 *root){
     if(root == NULL){
         return;
@@ -397,7 +397,7 @@ void postOrder(struct node1 *root){
     }
 }
 
-//preorder printing----------
+//preorder printing------------------------------------------------------------------
 void preOrder(struct node1 *root){
     if(root == NULL){
         return;
@@ -409,7 +409,7 @@ void preOrder(struct node1 *root){
     }
 }
 
-//quick sort-------------------------------------------------------------------
+//quick sort----------------------------------------------------------------------------
 
 struct linkedList * partition(struct linkedList **head){
     struct linkedList *list=*head;
@@ -637,7 +637,7 @@ else
 }
 
         printf("-------------------------------------------------------------------\n");
-        printf("Press Y to continue or any key to exit\n");
+        printf("Press Y to continue or any key to exit:");
         scanf("%s",ch);
         printf("-------------------------------------------------------------------\n");
 
@@ -657,30 +657,43 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
         year = entries[i].year_i;
         insertNode(age,year, fName, lName);
     }
-    printf("Printing Contents of tree in pre-Order:-\n");
+    printf("Printing Contents of tree in Pre-Order:\n\n");
     preOrder(root);
-    printf("Press '1' to continue processing or any other key to stop:-");
+    printf("-------------------------------------------------------------------\n");
+    printf("Press 1 to continue processing or any other key to stop:");
     scanf("%d", &ch);
+    printf("-------------------------------------------------------------------\n");
+
     if(ch == 1){
-        printf("Printing Contents of tree in post-Order:-\n");
+        printf("Printing Contents of tree in Post-Order:\n\n");
         postOrder(root);
-        printf("Press '1' to continue processing or any other key to stop:-");
+        printf("\n-------------------------------------------------------------------\n");
+        printf("Press 1 to continue processing or any other key to stop:");
         scanf("%d", &ch1);
+        printf("-------------------------------------------------------------------\n");
         if(ch1 == 1){
-            printf("Moving Contents of tree in a Linked List using in-Order traversal---------\n");
+            printf("Moving Contents of tree in a Linked List using In-Order traversal\n\n");
             inOrder(root);
+
             linklist(head);
-            printf("Press '1' to continue processing or any other key to stop:-");
+            printf("-------------------------------------------------------------------\n");
+            printf("Press 1 to continue processing or any other key to stop:");
             scanf("%d", &ch2);
+            printf("-------------------------------------------------------------------\n");
+
             if(ch2 == 1){
-                printf("Sorting Contents of linked List in lexicographical order--------------\n");
+                printf("\nSorting Contents of linked List in lexicographical order\n\n");
                 head = quicksort(head);
                 linklist(head);
-                printf("Press '1' to continue processing or any other key to stop:-");
+                printf("-------------------------------------------------------------------\n");
+                printf("Press 1 to continue processing or any other key to stop:");
                 scanf("%d", &ch3);
+                printf("-------------------------------------------------------------------\n");
+
                 if(ch3 == 1){
-                    printf("Enter details in the aforementioned format----\n");
+                    printf("Enter details in the aforementioned format\n");
                     scanf("%s %s %d %d", fName, lName, &age, &year);
+                    printf("\n");
                     struct linkedList *ptr = malloc(sizeof(struct linkedList));
                     ptr->age = age;
                     ptr->year = year;
@@ -688,6 +701,7 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
                     strcpy(ptr->lastNm, lName);
                     head = putNewDetail(head,ptr);
                     linklist(head);
+                    printf("\n-------------------------------------------------------------------\n");
                 }
             }
         }
