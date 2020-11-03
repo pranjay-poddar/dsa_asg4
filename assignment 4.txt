@@ -702,6 +702,13 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
                     head = putNewDetail(head,ptr);
                     linklist(head);
                     printf("\n-------------------------------------------------------------------\n");
+                    printf("All processes Completed Successfully.\n\nPlease enter 1 to exit:");
+                    scanf("%d",&choice);
+                    printf("\n-------------------------------------------------------------------\n");
+                    if(choice == 1)
+                        {
+                           printf("\nProgram exited Successfully.\n");
+                        }
                 }
             }
         }
