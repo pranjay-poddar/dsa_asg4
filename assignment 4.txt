@@ -682,7 +682,7 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
             printf("-------------------------------------------------------------------\n");
 
             if(ch2 == 1){
-                printf("\nSorting Contents of linked List in lexicographical order\n\n");
+                printf("\nSorting Contents of linked List:\n\n");
                 head = quicksort(head);
                 linklist(head);
                 printf("-------------------------------------------------------------------\n");
@@ -691,7 +691,7 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
                 printf("-------------------------------------------------------------------\n");
 
                 if(ch3 == 1){
-                    printf("Enter details in the aforementioned format\n");
+                    printf("Enter details in the given format (first_Name last_Name age year_of_birth):\n");
                     scanf("%s %s %d %d", fName, lName, &age, &year);
                     printf("\n");
                     struct linkedList *ptr = malloc(sizeof(struct linkedList));
