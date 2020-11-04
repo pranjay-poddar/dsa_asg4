@@ -13,7 +13,7 @@ struct node
     struct node*next;
 } *front = NULL,*rear=NULL,*front2=NULL,*rear2=NULL,*top=NULL,*prev;
 
-//FILE HANDLING-------------------------START-----------------------------------------------
+//FILE HANDLING---------------------a----START-----------------------------------------------
 int entryCount;
 typedef struct
 {
@@ -549,6 +549,8 @@ int main()
     FILE *fp = fopen("input.txt","r");
     Entry *entries = malloc(sizeof(Entry) * entryCount);   //allocate number of inputs
     fscanf(fp, "%i" , &entryCount);
+    char first_data_fname[15],first_data_lname[15];
+    int first_data_age,first_data_year;
 
     for (int i = 0; i < entryCount; i++)
     {
@@ -556,7 +558,13 @@ int main()
         entries[i].f_name = malloc(sizeof(char));
         entries[i].l_name = malloc(sizeof(char));
         fscanf(fp,"%s %s %i %i",entries[i].f_name, entries[i].l_name,&entries[i].age_i,&entries[i].year_i);
-
+        if(i==0)
+        {
+        strcpy(first_data_fname,entries[0].f_name);
+        strcpy(first_data_lname,entries[0].l_name);
+        first_data_age = entries[0].age_i;
+        first_data_year = entries[0].year_i;
+        }
     }
 
 
@@ -579,10 +587,21 @@ int main()
         switch(choice)
         {
             case 1:
-                strcpy(fn,entries[r].f_name);
-                strcpy(ln,entries[r].l_name);
-                ag = entries[r].age_i;
-                yr = entries[r].year_i;
+                if(r==0)
+                {
+                    strcpy(fn,first_data_fname);
+                    strcpy(ln,first_data_lname);
+                    ag = first_data_age;
+                    yr = first_data_year;
+
+                }
+                else
+                {
+                    strcpy(fn,entries[r].f_name);
+                    strcpy(ln,entries[r].l_name);
+                    ag = entries[r].age_i;
+                    yr = entries[r].year_i;
+                }
             enq(fn,ln,ag,yr);
             if (r+1==entryCount)
                 {
@@ -683,10 +702,19 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
     char lName[20];
     int ch, ch1, ch2, ch3;
     for(i = 0; i< entryCount; i++){
+      if(i == 0){
+        strcpy(fName,first_data_fname);
+        strcpy(lName,first_data_lname);
+        age = first_data_age;
+        year = first_data_year;
+      }
+      else{
         strcpy(fName,entries[i].f_name);
         strcpy(lName,entries[i].l_name);
         age = entries[i].age_i;
         year = entries[i].year_i;
+
+      }
         insertNode(age,year, fName, lName);
     }
     printf("Printing Contents of tree in Pre-Order:\n\n");
