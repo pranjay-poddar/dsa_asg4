@@ -376,7 +376,7 @@ void inOrder(struct node1* root){
 }
 
 //printing linked-list----------------------------------------------------------------
-void linklist(){
+void linklist(struct linkedList* head){
     printf("Printing Contents of linked list\n\n");
     struct linkedList *temp = head;
     while(temp != NULL){
@@ -411,71 +411,103 @@ void preOrder(struct node1 *root){
 
 //quick sort----------------------------------------------------------------------------
 
-struct linkedList * partition(struct linkedList **head){
-    struct linkedList *list=*head;
-    struct linkedList *pv=*head;
-    int pivot=list->year;
-    struct linkedList *p=list->next;
-    struct linkedList *temp,*q=list;
-    int ageTemp;
-    int yearTemp;
-    char fTtemp[20];
-    char lTemp[20];
-
-    while(1){
-        if(!p)
-            break;
-
-        if(p->year < pivot){
-            temp=p;
-            q->next=temp->next;
-            p=p->next;
-            temp->next=list;
-            list=temp;
-        }
-        else{
-            q=p;
-            p=p->next;
-        }
-    }
-    *head=list;
-    return pv ;
+struct linkedList *getTail(struct linkedList *cur)
+{
+    while (cur != NULL && cur->next != NULL)
+        cur = cur->next;
+    return cur;
 }
 
-struct linkedList* quicksort(struct linkedList * list){
+struct linkedList *partition(struct linkedList *head, struct linkedList *end,
+                    struct linkedList **newHead, struct linkedList **newEnd)
+{
+    struct linkedList *pivot = end;
+    struct linkedList *prev = NULL, *cur = head, *tail = pivot;
 
-
-
-    if(list==NULL || (list)->next==NULL)
-        return list;
-    struct linkedList * q, *list1,*list2, *temp;
-    q=partition(&list);
-
-    list1=list;
-
-    list2=q->next;
-    temp=list1;
-
-    while(1){
-        if(temp->next==q)
+    // During partition, both the head and end of the list might change
+    // which is updated in the newHead and newEnd variables
+    while (cur != pivot)
+    {
+        if (cur->year < pivot->year)
         {
-            temp->next=NULL;
-            break;
+            // First node that has a value less than the pivot - becomes
+            // the new head
+            if ((*newHead) == NULL)
+                (*newHead) = cur;
 
+            prev = cur;
+            cur = cur->next;
         }
-        temp=temp->next;
-
+        else // If cur node is greater than pivot
+        {
+            // Move cur node to next of tail, and change tail
+            if (prev)
+                prev->next = cur->next;
+            struct linkedList *tmp = cur->next;
+            cur->next = NULL;
+            tail->next = cur;
+            tail = cur;
+            cur = tmp;
+        }
     }
 
-    list1=quicksort(list1);
-    list2=quicksort(list2);
-    temp=list1;
-    while(temp->next!=NULL)
-        temp=temp->next;
-    temp->next=q;
-    q->next=list2;
-    return list1;
+    // If the pivot data is the smallest element in the current list,
+    // pivot becomes the head
+    if ((*newHead) == NULL)
+        (*newHead) = pivot;
+
+    // Update newEnd to the current last node
+    (*newEnd) = tail;
+
+    // Return the pivot node
+    return pivot;
 }
+
+
+//here the sorting happens exclusive of the end node
+struct linkedList *quickSortRecur(struct linkedList *head, struct linkedList *end)
+{
+    // base condition
+    if (!head || head == end)
+        return head;
+
+    struct linkedList *newHead = NULL, *newEnd = NULL;
+
+    // Partition the list, newHead and newEnd will be updated
+    // by the partition function
+    struct linkedList *pivot = partition(head, end, &newHead, &newEnd);
+
+    // If pivot is the smallest element - no need to recur for
+    // the left part.
+    if (newHead != pivot)
+    {
+        // Set the node before the pivot node as NULL
+        struct linkedList *tmp = newHead;
+        while (tmp->next != pivot)
+            tmp = tmp->next;
+        tmp->next = NULL;
+
+        // Recur for the list before pivot
+        newHead = quickSortRecur(newHead, tmp);
+
+        // Change next of last node of the left half to pivot
+        tmp = getTail(newHead);
+        tmp->next = pivot;
+    }
+
+    // Recur for the list after the pivot element
+    pivot->next = quickSortRecur(pivot->next, newEnd);
+
+    return newHead;
+}
+
+// The main function for quick sort. This is a wrapper over recursive
+// function quickSortRecur()
+void quickSort(struct linkedList **headRef)
+{
+    (*headRef) = quickSortRecur(*headRef, getTail(*headRef));
+}
+
 
 //-----------------------------------------------------------------------------
 
@@ -683,7 +715,7 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
 
             if(ch2 == 1){
                 printf("\nSorting Contents of linked List:\n\n");
-                head = quicksort(head);
+                quickSort(&head);
                 linklist(head);
                 printf("-------------------------------------------------------------------\n");
                 printf("Press 1 to continue processing or any other key to stop:");
@@ -724,3 +756,4 @@ else
 
     return 0;
 }
+
