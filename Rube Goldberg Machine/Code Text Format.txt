@@ -20,7 +20,7 @@ typedef struct
     char *f_name;
     char *l_name;
     int age_i;
-    int year_i;
+    int year_i;   //Copyright 2020 team zero kelvin
 } Entry;
 
 //FILE HANDLING-------------------------END-------------------------------------------------
@@ -72,7 +72,7 @@ void enq2(char fn[],char ln[],int age2,int year2)
     newnode=(struct node *)(malloc(sizeof(struct node)));
 
     strcpy(newnode->fname,fn);
-    strcpy(newnode->lname,ln);
+    strcpy(newnode->lname,ln);//Copyright 2020 team zero kelvin
     newnode->age=age2;
     newnode->year=year2;
     newnode->next=NULL;
@@ -124,7 +124,7 @@ void dq2()
     if(front2 == NULL && rear2 == NULL)
     {
         printf("\nQueue is empty!\n\n");
-        printf("All data pushed successfully to stack\n");
+        printf("All data pushed successfully to stack\n");//Copyright 2020 team zero kelvin
         printf("\n-------------------------------------------------------------------\n");
         printf("Press 2 to reverse order of stack\n");
         printf("-------------------------------------------------------------------\n\n");
@@ -156,11 +156,11 @@ void push(char fn[],char ln[],int age3,int year3)
 
     //data initialization-------
     strcpy(newdata->fname,fn);
-    strcpy(newdata->lname,ln);
+    strcpy(newdata->lname,ln);//Copyright 2020 team zero kelvin
     newdata->age=age3;
     newdata->year=year3;
 
-    newdata->next=top;
+    newdata->next=top;//Copyright 2020 team zero kelvin
     top=newdata;
 
 
@@ -233,7 +233,7 @@ void enq3(char fn[],char ln[],int age4,int year4)
     strcpy(newnode->lname,ln);
     newnode->age=age4;
     newnode->year=year4;
-    newnode->next=NULL;
+    newnode->next=NULL;//Copyright 2020 team zero kelvin
 
     if(front == NULL && rear == NULL)
     {
@@ -305,7 +305,7 @@ void enqueue(struct queue* queue, struct node1 *temp){
 
 struct node1 *dequeue(struct queue *queue){
     queue->size--;
-    return queue->arr[++queue->front];
+    return queue->arr[++queue->front];//Copyright 2020 team zero kelvin
 }
 
 void insertNode(int age, int year, char fName[], char lName[]){
@@ -516,7 +516,7 @@ struct linkedList* putNewDetail(struct linkedList *head, struct linkedList *ptr)
     struct linkedList *previous = head;
     struct linkedList *run = previous->next;
     if(head->year > ptr->year){
-            ptr->next = head;
+            ptr->next = head;//Copyright 2020 team zero kelvin
             head = ptr;
     }
     else{
@@ -539,7 +539,7 @@ struct linkedList* putNewDetail(struct linkedList *head, struct linkedList *ptr)
 
 //-----------------------------
 //tree part end---------------------------------------------------------------------------------------
-
+//Copyright 2020 team zero kelvin
 
 //main function----------------------------------------------------------------
 int main()
@@ -648,7 +648,7 @@ printf("Press Y to continue processing or any key to exit:");
 scanf("%s",ch);
 
 // Queue to stack push pop and requeue-----------------------start-------------------
-
+//Copyright 2020 team zero kelvin
 
 
 if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
@@ -734,7 +734,7 @@ if (strcmp(ch,"Y") == 0 || strcmp(ch,"y") == 0)
         if(ch1 == 1){
             printf("Moving Contents of tree in a Linked List using In-Order traversal\n\n");
             inOrder(root);
-
+//Copyright 2020 team zero kelvin
             linklist(head);
             printf("-------------------------------------------------------------------\n");
             printf("Press 1 to continue processing or any other key to stop:");
@@ -784,4 +784,4 @@ else
 
     return 0;
 }
-
+//Copyright 2020 team zero kelvin
