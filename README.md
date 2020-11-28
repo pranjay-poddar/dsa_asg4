@@ -11,7 +11,7 @@ The performance of our program is efficient and our application is easy to use, 
 <h4>In terms of complexity:</h4>
 Stacks and queues follow the principle of first-in-last-out (stacks) and first-in-first-out (queues). The time complexity for stacks is O(1) and the time complexity for queues is O(n).
 <h4>How to use our program?</h4>
-<p>Refer the documentation provided with instruction for the usage of the application.</p>
+<p>Refer the documentation provided with the instructions for the usage of the application.</p>
   
   <h4>Zero-kelvin Team Details-</h4>
   <p>
