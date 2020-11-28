@@ -6,7 +6,7 @@
   
   <br>
   <p>This is a C language based dynamic program which uses various abstract data types like dynamic arrays, linked lists, queues, stacks, binary trees to manage the flow of data in a Rube Goldberg Machine. </p>
-  ###Zero-kelvin Team Details-<br>
+  ### Zero-kelvin Team Details-<br>
   <p>
 • Pranjay Poddar (RA1911028010129)<br>
 • Shreyansh Pathak (RA1911028010097)<br>
