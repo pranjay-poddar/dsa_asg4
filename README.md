@@ -6,6 +6,11 @@
   
   <br>
   <p>This is a C language based dynamic program which uses various abstract data types like dynamic arrays, linked lists, queues, stacks, binary trees to manage the flow of data in a Rube Goldberg Machine. </p>
+  <h4>Analysis of our application</h4>
+The performance of our program is efficient and our application is easy to use, easy to enter input, easy to read, and understand the output. It is dynamic i.e. any number of inputs can be given by the user and the application will work effectively following the given scenario systematically. As mentioned in the source code, the comments are clearly describing the problem scenario. If the user enters any number other than the said value; the program would show it as an invalid input and continue the process.<br>
+In terms of complexity:<br>
+Stacks and queues follow the principle of first-in-last-out (stacks) and first-in-first-out (queues). The time complexity for stacks is O(1) and the time complexity for queues is O(n).
+  
   <h4>Zero-kelvin Team Details-</h4>
   <p>
 • Pranjay Poddar (RA1911028010129)<br>
