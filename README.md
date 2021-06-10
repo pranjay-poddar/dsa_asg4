@@ -1,7 +1,9 @@
 <h1>Rube Goldberg Machine</h1>
 
   ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
+  
   ![forthebadge](https://forthebadge.com/images/badges/uses-brains.svg)
+  
   ![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)
   
   <br>
